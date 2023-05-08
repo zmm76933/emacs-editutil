@@ -750,7 +750,7 @@
   (global-set-key (kbd "M-o") #'editutil-edit-next-line)
   (global-set-key (kbd "M-O") #'editutil-edit-previous-line)
 
-  (global-set-key (kbd "C-x K") #'editutil-kill-this-buffer)
+  (global-set-key (kbd "C-x k") #'editutil-kill-this-buffer)
 
   (global-set-key (kbd "C-y") #'editutil-yank)
   (global-set-key (kbd "C-x y") #'editutil-yank-next-line)
