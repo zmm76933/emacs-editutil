@@ -726,9 +726,6 @@
 
   (global-unset-key (kbd "C-x z"))
 
-  (global-set-key (kbd "RET") #'editutil-newline)
-  (global-set-key (kbd "C-j") #'editutil-newline-and-maybe-indent)
-
   (global-set-key (kbd "C-M-s") #'editutil-forward-symbol-at-point)
   (global-set-key (kbd "C-x *") #'editutil-forward-current-symbol)
   (global-set-key (kbd "C-x #") #'editutil-backward-current-symbol)
