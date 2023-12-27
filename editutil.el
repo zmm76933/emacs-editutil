@@ -36,6 +36,7 @@
 (require 'thingatpt)
 (require 'which-func)
 (require 'dired)
+(require 'smartparens)
 
 (require 'xref)
 (require 'recentf)
@@ -415,13 +416,28 @@
             (forward-line (1+ arg))
             (funcall func (point) end)))))))
 
+(defun editutil--kill-command-specific (arg func)
+  (if (not arg)
+      (if (use-region-p)
+          (call-interactively func)
+        (call-interactively 'sp-backward-delete-symbol))
+    (let ((prefix-arg (prefix-numeric-value arg)))
+      (save-excursion
+        (if (>= prefix-arg 0)
+            (let ((start (line-beginning-position)))
+              (forward-line prefix-arg)
+              (funcall func start (point)))
+          (let ((end (line-end-position)))
+            (forward-line (1+ arg))
+            (funcall func (point) end)))))))
+
 (defun editutil-kill-ring-save (arg)
   (interactive "P")
   (editutil--kill-command-common arg 'kill-ring-save 'sexp))
 
 (defun editutil-kill-region (arg)
   (interactive "P")
-  (editutil--kill-command-common arg 'kill-region 'symbol))
+  (editutil--kill-command-specific arg 'kill-region))
 
 (defun editutil-toggle-cleanup-spaces ()
   (interactive)
