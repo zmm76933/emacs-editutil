@@ -36,7 +36,6 @@
 (require 'thingatpt)
 (require 'which-func)
 (require 'dired)
-(require 'smartparens)
 
 (require 'xref)
 (require 'recentf)
@@ -420,7 +419,7 @@
   (if (not arg)
       (if (use-region-p)
           (call-interactively func)
-        (call-interactively 'sp-backward-delete-symbol))
+        (call-interactively 'editutil-backward-delete-word))
     (let ((prefix-arg (prefix-numeric-value arg)))
       (save-excursion
         (if (>= prefix-arg 0)
